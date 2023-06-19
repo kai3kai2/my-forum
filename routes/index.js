@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-router.get('/', (req, res) => {
-  res.send('Hello world')
-})
+
+const forumController = require('../controllers/forum-controller')
+
+router.get('/forums', forumController.getForum)
+router.use('/', (req, res) => res.redirect('/forums'))
 
 module.exports = router
