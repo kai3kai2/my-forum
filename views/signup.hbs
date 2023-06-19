@@ -10,7 +10,8 @@
       </h1>
       {{> messages}}
 
-      <form action="/signup" method="POST" class="mx-3">
+      <form action="/signup" method="POST" class="mx-3" onsubmit="return validateForm()">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <div class="my-3">
           <label for="name" class="mb-2" style="font-size: 1.2rem;">
             <i class="fa-solid fa-signature"></i>
@@ -23,6 +24,7 @@
             class="form-control"
             placeholder="Enter Your Name"
             value="{{name}}"
+            required
           />
         </div>
 
@@ -38,6 +40,7 @@
             class="form-control"
             placeholder="Enter Email"
             value="{{email}}"
+            required
           />
         </div>
 
@@ -52,6 +55,7 @@
             id="password"
             class="form-control"
             placeholder="Enter Password"
+            required
           />
         </div>
 
@@ -66,6 +70,7 @@
             id="confirmPassword"
             class="form-control"
             placeholder="Enter Again Password"
+            required
           />
         </div>
 
