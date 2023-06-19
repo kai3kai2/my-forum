@@ -7,12 +7,28 @@ const userController = {
   signUpPage: (req, res) => {
     res.render('signup')
   },
-  signUp: async (req, res) => {
+  signUp: async (req, res, next) => {
     try {
       const { name, email, password, confirmPassword } = req.body
-      if (name?.trim().length === 0 || email?.trim().length === 0 || password?.trim().length === 0) throw new Error('還有欄位沒填唷!')
-      if (password !== confirmPassword) throw new Error('密碼與確認密碼不相符')
-      if (name && name.length > 30) throw new Error('名字上限為30個字')
+      const errors = []
+      if (name?.trim().length === 0 || email?.trim().length === 0 || password?.trim().length === 0) {
+        errors.push({ messages: '還有欄位沒填唷!' })
+      }
+      if (password !== confirmPassword) {
+        errors.push({ messages: '密碼與確認密碼不相符!' })
+      }
+      if (name && name.length > 30) {
+        errors.push({ messages: '名字上限為30個字!' })
+      }
+      if (errors.length) {
+        return res.render('signup', {
+          errors,
+          name,
+          email,
+          password,
+          confirmPassword
+        })
+      }
 
       const existingEmail = await User.findOne({ where: { email } })
       if (existingEmail) throw new Error('Email 已經註冊過了!')
@@ -29,7 +45,7 @@ const userController = {
       delete newUser.password
       res.redirect('/signin')
     } catch (err) {
-      res.render('error', { message: err.message })
+      next(err)
     }
   }
 }
