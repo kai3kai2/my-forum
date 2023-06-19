@@ -70,6 +70,7 @@ command + c (mac)
 - Express-Handlebars 3.0.0
 - Bootstrap 5.2.2
 - Font-awesome 6.2.0
-- MongoDB
+- MySQL 2.3.0
 - Mongoose 6.7.2
+- sequelize-cli 6.2.0
 - 其他詳見 package.json
