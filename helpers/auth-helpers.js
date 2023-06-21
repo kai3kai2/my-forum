@@ -2,4 +2,8 @@ const getUser = req => {
   return req.user || null
 }
 
-module.exports = { getUser }
+const onAuthenticated = req => {
+  return req.isAuthenticated()
+}
+
+module.exports = { getUser, onAuthenticated }

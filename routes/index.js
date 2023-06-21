@@ -6,6 +6,7 @@ const router = express.Router()
 const forumController = require('../controllers/forum-controller')
 const userController = require('../controllers/user-controller')
 const { generalErrorHandler } = require('../middleware/error-handlebars')
+const { authenticated, authenticatedUser } = require('../middleware/auth')
 
 // router.use(cookieParser()) // 待實作CSRF 功能
 // const csrfProtection = csrf({ cookie: true })
@@ -15,7 +16,7 @@ router.post('/signup', userController.signUp)
 router.get('/signin', userController.signInPage)
 router.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn)
 router.get('/logout', userController.logout)
-router.get('/forums', forumController.getForum)
+router.get('/forums', authenticated, authenticatedUser, forumController.getForum)
 router.use('/', (req, res) => res.redirect('/forums'))
 router.use('/', generalErrorHandler)
 
