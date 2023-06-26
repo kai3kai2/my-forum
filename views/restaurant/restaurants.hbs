@@ -1,5 +1,5 @@
 <h1>餐廳後台</h1>
-<a href='/restaurants/create'>
+<a href='/restaurant/restaurants/create'>
   <button type="button" class="btn btn-primary">New Restaurant</button>
 </a>
 <br />
@@ -19,16 +19,16 @@
         <td>{{this.name}}</td>
         <td>
           <button type="button" class="btn btn-link">
-            <a class="btn btn-link link-primary" href="/admin/restaurants/{{this.id}}">
+            <a class="btn btn-link link-primary" href="/restaurant/restaurants/{{this.id}}">
               Show
             </a>
           </button>
           <button type="button" class="btn btn-link">
-            <a class="btn btn-link link-primary" href="/admin/restaurants/{{this.id}}/edit">
+            <a class="btn btn-link link-primary" href="/restaurant/restaurants/{{this.id}}/edit">
               Edit
             </a>
           </button>
-          <form action="/admin/restaurants/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
+          <form action="/restaurant/restaurants/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
             <button type="submit" class="btn btn-link link-danger">Delete</button>
           </form>
         </td>
