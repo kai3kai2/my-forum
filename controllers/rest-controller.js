@@ -1,4 +1,5 @@
 const { Restaurant } = require('../models')
+const { localFileHandler } = require('../helpers/file-helpers')
 
 const restController = {
   getRestaurnts: async (req, res, next) => {
@@ -21,14 +22,16 @@ const restController = {
   postRestaurant: async (req, res, next) => {
     try {
       const { name, tel, address, openingHours, description } = req.body
-
+      const { file } = req // 把檔案取出 等於 const file = req.file 寫法
+      const localFile = await localFileHandler(file)
       if (!name) throw new Error('Restaurant name ir required!')
       await Restaurant.create({
         name,
         tel,
         address,
         openingHours,
-        description
+        description,
+        image: localFile || null
       })
       req.flash('success_messages', '創建成功！')
       res.redirect('/restaurant/restaurants')
@@ -63,15 +66,20 @@ const restController = {
   putRestaurant: async (req, res, next) => {
     try {
       const restaurantId = req.params.id
+      const { file } = req
       const { name, tel, address, openingHours, description } = req.body
-      const restaurant = await Restaurant.findByPk(restaurantId)
+      const [restaurant, localFile] = await Promise.all([
+        Restaurant.findByPk(restaurantId),
+        localFileHandler(file)
+      ])
       if (!restaurant) throw new Error('這間餐廳不存在!')
       await restaurant.update({
         name,
         tel,
         address,
         openingHours,
-        description
+        description,
+        image: localFile || null
       })
       req.flash('success_messages', '修改成功!')
       res.redirect('/restaurant/restaurants')

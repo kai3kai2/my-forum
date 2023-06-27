@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const handlebars = require('express-handlebars')
 const flash = require('connect-flash')
 const session = require('express-session')
@@ -20,6 +21,7 @@ app.use(session({ secret: SESSION_SECRET, resave: false, saveUninitialized: fals
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
+app.use('/upload', express.static(path.join(__dirname, 'upload')))
 app.use(flash())
 app.use((req, res, next) => {
   res.locals.success_messages = req.flash('success_messages')
