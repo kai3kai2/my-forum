@@ -58,7 +58,7 @@ ctrl + c (windows)
 command + c (mac)
 ```
 
-## 共用帳號
+## 測試帳號
 * 想要使用可以使用以下預設帳號 :
   * email: user1@example.com
   * password: 12345678
