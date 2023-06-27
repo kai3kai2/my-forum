@@ -78,6 +78,17 @@ const restController = {
     } catch (err) {
       next(err)
     }
+  },
+  deleteRestaurant: async (req, res, next) => {
+    try {
+      const restaurantId = req.params.id
+      const delRestaurant = await Restaurant.findByPk(restaurantId)
+      if (!delRestaurant) throw new Error('這間餐廳不存在!')
+      await delRestaurant.destroy()
+      res.redirect('/restaurant/restaurants')
+    } catch (err) {
+      next(err)
+    }
   }
 }
 module.exports = restController
