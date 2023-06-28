@@ -4,7 +4,7 @@ const faker = require('faker')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const Categories = await queryInterface.sequelize.query(
+    const categories = await queryInterface.sequelize.query(
       'SELECT id FROM Categories;',
       { type: queryInterface.sequelize.QueryTypes.SELECT }
     )
@@ -18,7 +18,7 @@ module.exports = {
         description: faker.lorem.text(),
         created_at: new Date(),
         updated_at: new Date(),
-        category_id: Math.floor(Math.random() * 7 + 1)
+        category_id: categories[Math.floor(Math.random() * categories.length)].id
       }))
     )
   },
