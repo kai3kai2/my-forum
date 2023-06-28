@@ -16,14 +16,17 @@ const restController = {
   },
   createRestaurant: async (req, res, next) => {
     try {
-      res.render('restaurant/create-restaurant')
+      const categories = await Category.findAll({
+        raw: true
+      })
+      res.render('restaurant/create-restaurant', { categories })
     } catch (err) {
       next(err)
     }
   },
   postRestaurant: async (req, res, next) => {
     try {
-      const { name, tel, address, openingHours, description } = req.body
+      const { name, tel, address, openingHours, description, categoryId } = req.body
       const { file } = req // 把檔案取出 等於 const file = req.file 寫法
       const localFile = await localFileHandler(file)
       if (!name) throw new Error('Restaurant name ir required!')
@@ -33,7 +36,8 @@ const restController = {
         address,
         openingHours,
         description,
-        image: localFile || null
+        image: localFile || null,
+        categoryId
       })
       req.flash('success_messages', '創建成功！')
       res.redirect('/restaurant/restaurants')
@@ -58,11 +62,12 @@ const restController = {
   editRestaurant: async (req, res, next) => {
     try {
       const restaurantId = req.params.id
-      const restaurant = await Restaurant.findByPk(restaurantId, {
-        raw: true
-      })
+      const [restaurant, categories] = await Promise.all([
+        Restaurant.findByPk(restaurantId, { raw: true }),
+        Category.findAll({ raw: true })
+      ])
       if (!restaurant) throw new Error('此餐廳不存在!')
-      res.render('restaurant/edit-restaurant', { restaurant })
+      res.render('restaurant/edit-restaurant', { restaurant, categories })
     } catch (err) {
       next(err)
     }
@@ -71,7 +76,7 @@ const restController = {
     try {
       const restaurantId = req.params.id
       const { file } = req
-      const { name, tel, address, openingHours, description } = req.body
+      const { name, tel, address, openingHours, description, categoryId } = req.body
       const [restaurant, localFile] = await Promise.all([
         Restaurant.findByPk(restaurantId),
         localFileHandler(file)
@@ -83,7 +88,8 @@ const restController = {
         address,
         openingHours,
         description,
-        image: localFile || null
+        image: localFile || null,
+        categoryId
       })
       req.flash('success_messages', '修改成功!')
       res.redirect('/restaurant/restaurants')
