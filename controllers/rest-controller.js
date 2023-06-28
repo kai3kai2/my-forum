@@ -1,11 +1,13 @@
-const { Restaurant } = require('../models')
+const { Restaurant, Category } = require('../models')
 const { localFileHandler } = require('../helpers/file-helpers')
 
 const restController = {
   getRestaurnts: async (req, res, next) => {
     try {
       const restaurants = await Restaurant.findAll({
-        raw: true
+        raw: true,
+        nest: true,
+        include: [Category]
       })
       res.render('restaurant/restaurants', { restaurants })
     } catch (err) {
@@ -43,7 +45,9 @@ const restController = {
     try {
       const restaurantId = req.params.id
       const restaurant = await Restaurant.findByPk(restaurantId, {
-        raw: true
+        raw: true,
+        nest: true,
+        include: [Category]
       })
       if (!restaurant) throw new Error('此餐廳不存在!')
       res.render('restaurant/restaurant', { restaurant })
