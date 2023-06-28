@@ -19,20 +19,21 @@
   <div>
     {{ success_messages }}
   </div>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {{/if}}
 
 {{#if warning_messages }}
 <div class="alert alert-warning d-flex alert-dismissible fade show" role="alert">
   <strong>
-  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+      <use xlink:href="#exclamation-triangle-fill"/>
+    </svg>
+  </strong>
   <div>
     {{ warning_messages }}
   </div>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {{/if}}
 
@@ -44,8 +45,7 @@
   <div>
     {{ error_messages }}
   </div>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {{/if}}
 
@@ -59,8 +59,7 @@
       <div>
         {{ this.messages }}
       </div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-      </button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   {{/each}}
 {{/if}}

@@ -12,7 +12,13 @@ router.put('/restaurants/:id', upload.single('image'), restController.putRestaur
 router.delete('/restaurants/:id', restController.deleteRestaurant)
 router.post('/restaurants', upload.single('image'), restController.postRestaurant)
 router.get('/restaurants', restController.getRestaurnts)
+
+router.get('/categories/:id', categoryController.getCategories)
+router.put('/categories/:id', categoryController.putCategory)
+router.delete('/categories/:id', categoryController.deleteCategory)
 router.get('/categories', categoryController.getCategories)
+router.post('/categories', categoryController.postCategory)
+
 router.get('', (req, res) => res.redirect('/restaurant/restaurants'))
 
 module.exports = router
