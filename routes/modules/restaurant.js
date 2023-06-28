@@ -11,6 +11,6 @@ router.put('/restaurants/:id', upload.single('image'), restController.putRestaur
 router.delete('/restaurants/:id', restController.deleteRestaurant)
 router.post('/restaurants', upload.single('image'), restController.postRestaurant)
 router.get('/restaurants', restController.getRestaurnts)
-router.get('/', (req, res) => res.redirect('/restaurant/restaurants'))
+router.get('', (req, res) => res.redirect('/restaurant/restaurants'))
 
 module.exports = router
