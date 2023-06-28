@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const restController = require('../../controllers/rest-controller')
+const categoryController = require('../../controllers/category-controller')
 const upload = require('../../middleware/multer')
 
 router.get('/restaurants/create', restController.createRestaurant)
@@ -11,6 +12,7 @@ router.put('/restaurants/:id', upload.single('image'), restController.putRestaur
 router.delete('/restaurants/:id', restController.deleteRestaurant)
 router.post('/restaurants', upload.single('image'), restController.postRestaurant)
 router.get('/restaurants', restController.getRestaurnts)
+router.get('/categories', categoryController.getCategories)
 router.get('', (req, res) => res.redirect('/restaurant/restaurants'))
 
 module.exports = router
