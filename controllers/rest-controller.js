@@ -9,7 +9,7 @@ const restController = {
         nest: true,
         include: [Category]
       })
-      res.render('restaurant/restaurants', { restaurants })
+      res.render('manage/restaurants', { restaurants })
     } catch (err) {
       next(err)
     }
@@ -19,7 +19,7 @@ const restController = {
       const categories = await Category.findAll({
         raw: true
       })
-      res.render('restaurant/create-restaurant', { categories })
+      res.render('manage/create-restaurant', { categories })
     } catch (err) {
       next(err)
     }
@@ -40,7 +40,7 @@ const restController = {
         categoryId
       })
       req.flash('success_messages', '創建成功！')
-      res.redirect('/restaurant/restaurants')
+      res.redirect('/manage/restaurants')
     } catch (err) {
       next(err)
     }
@@ -54,7 +54,7 @@ const restController = {
         include: [Category]
       })
       if (!restaurant) throw new Error('此餐廳不存在!')
-      res.render('restaurant/restaurant', { restaurant })
+      res.render('manage/restaurant', { restaurant })
     } catch (err) {
       next(err)
     }
@@ -67,7 +67,7 @@ const restController = {
         Category.findAll({ raw: true })
       ])
       if (!restaurant) throw new Error('此餐廳不存在!')
-      res.render('restaurant/edit-restaurant', { restaurant, categories })
+      res.render('manage/edit-restaurant', { restaurant, categories })
     } catch (err) {
       next(err)
     }
@@ -92,7 +92,7 @@ const restController = {
         categoryId
       })
       req.flash('success_messages', '修改成功!')
-      res.redirect('/restaurant/restaurants')
+      res.redirect('/manage/restaurants')
     } catch (err) {
       next(err)
     }
@@ -103,7 +103,7 @@ const restController = {
       const delRestaurant = await Restaurant.findByPk(restaurantId)
       if (!delRestaurant) throw new Error('這間餐廳不存在!')
       await delRestaurant.destroy()
-      res.redirect('/restaurant/restaurants')
+      res.redirect('/manage/restaurants')
     } catch (err) {
       next(err)
     }

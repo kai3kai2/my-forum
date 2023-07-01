@@ -5,7 +5,7 @@ const passport = require('../config/passport')
 const router = express.Router()
 const forumController = require('../controllers/forum-controller')
 const userController = require('../controllers/user-controller')
-const restaurant = require('./modules/restaurant')
+const manage = require('./modules/manage')
 const { generalErrorHandler } = require('../middleware/error-handlebars')
 const { authenticated, authenticatedUser } = require('../middleware/auth')
 
@@ -19,7 +19,7 @@ router.post('/signin', passport.authenticate('local', { failureRedirect: '/signi
 router.get('/logout', userController.logout)
 router.get('/forums', authenticated, authenticatedUser, forumController.getForum)
 
-router.use('/restaurant', restaurant) // authenticated, authenticatedUser,
+router.use('/manage', manage) // authenticated, authenticatedUser,
 router.use('/', (req, res) => res.redirect('/forums'))
 router.use('/', generalErrorHandler)
 

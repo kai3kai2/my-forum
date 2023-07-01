@@ -8,7 +8,7 @@ const categoryController = {
         Category.findAll({ raw: true }),
         categoryId ? Category.findByPk(categoryId, { raw: true }) : null
       ])
-      res.render('restaurant/categories', { categories, category })
+      res.render('manage/categories', { categories, category })
     } catch (err) {
       next(err)
     }
@@ -20,12 +20,12 @@ const categoryController = {
       const category = await Category.findOne({ where: { name }, raw: true })
       if (category) {
         req.flash('warning_messages', '此種類已存在!')
-        return res.redirect('/restaurant/categories')
+        return res.redirect('/manage/categories')
       }
 
       await Category.create({ name })
       req.flash('success_messages', ' 新增類別成功!')
-      res.redirect('/restaurant/categories')
+      res.redirect('/manage/categories')
     } catch (err) {
       next(err)
     }
@@ -42,12 +42,12 @@ const categoryController = {
       const existingCategory = await Category.findOne({ where: { name } })
       if (existingCategory) {
         req.flash('warning_messages', '此種類已存在!')
-        return res.redirect('/restaurant/categories')
+        return res.redirect('/manage/categories')
       }
 
       await editCategory.update({ name })
       req.flash('success_messages', '修改成功!')
-      res.redirect('/restaurant/categories')
+      res.redirect('/manage/categories')
     } catch (err) {
       next(err)
     }
@@ -59,7 +59,7 @@ const categoryController = {
       if (!delCategory) throw new Error('無法刪除不存在的種類!')
       delCategory.destroy()
       req.flash('success_messages', '刪除成功!')
-      res.redirect('/restaurant/categories')
+      res.redirect('/manage/categories')
     } catch (err) {
       next(err)
     }

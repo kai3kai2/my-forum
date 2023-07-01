@@ -2,19 +2,19 @@
 
 {{#if category}}
   <div class="d-flex align-items-center pt-3 pb-4 my-2 text-white-50 bg-purple">
-      <form class="row" action="/restaurant/categories/{{category.id}}?_method=PUT" method="POST">
+      <form class="row" action="/manage/categories/{{category.id}}?_method=PUT" method="POST">
         <div class="col-auto">
           <input class="form-control" type="text" name="name" id="address" placeholder="name" value="{{category.name}}">
         </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-success col-md">update</button>
-          <a class="btn btn-link link-secondary" href="/restaurant/categories">back Create New Category</a>
+          <a class="btn btn-link link-secondary" href="/manage/categories">back Create New Category</a>
         </div>
       </form>
     </div>
   {{else}}
     <div class="d-flex align-items-center pt-3 pb-4 my-2 text-white-50 bg-purple">
-      <form class="row" action="/restaurant/categories" method="POST">
+      <form class="row" action="/manage/categories" method="POST">
         <div class="col-auto">
           <input class="form-control" type="text" name="name" id="address" placeholder="Category Name">
         </div>
@@ -40,11 +40,11 @@
         <td>{{this.name}}</td>
         <td>
           <button type="button" class="btn btn-link">
-            <a class="btn btn-link link-primary" href="/restaurant/categories/{{this.id}}">
+            <a class="btn btn-link link-primary" href="/manage/categories/{{this.id}}">
               Edit
             </a>
           </button>
-          <form action="/restaurant/categories/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
+          <form action="/manage/categories/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
             <button type="submit" class="btn btn-link link-danger" onclick="return confirm(`確定要刪除{{this.name}}嗎?`)">Delete</button>
           </form>
         </td>
