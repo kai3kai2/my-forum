@@ -20,6 +20,20 @@ const forumController = {
     } catch (err) {
       next(err)
     }
+  },
+  getRestaurant: async (req, res, next) => {
+    try {
+      const restaurantId = req.params.id
+      const restaurant = await Restaurant.findByPk(restaurantId, {
+        include: Category,
+        nest: true,
+        raw: true
+      })
+      if (!restaurant) throw new Error('此餐廳不存在!')
+      res.render('restaurant', { restaurant })
+    } catch (err) {
+      next(err)
+    }
   }
 }
 
