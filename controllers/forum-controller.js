@@ -15,7 +15,6 @@ const forumController = {
         ...r,
         description: r.description.substring(0, 40) + '...'
       }))
-      console.log(restaurant[0])
       res.render('restaurants', { restaurants: data })
     } catch (err) {
       next(err)
@@ -26,11 +25,12 @@ const forumController = {
       const restaurantId = req.params.id
       const restaurant = await Restaurant.findByPk(restaurantId, {
         include: Category,
-        nest: true,
-        raw: true
+        nest: true
       })
       if (!restaurant) throw new Error('此餐廳不存在!')
-      res.render('restaurant', { restaurant })
+      await restaurant.increment('views')
+      console.log(restaurant.views)
+      res.render('restaurant', { restaurant: restaurant.toJSON() })
     } catch (err) {
       next(err)
     }
