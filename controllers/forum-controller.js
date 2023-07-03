@@ -6,16 +6,23 @@ const forumController = {
   },
   getRestaurants: async (req, res, next) => {
     try {
-      const restaurant = await Restaurant.findAll({
-        include: Category,
-        nest: true,
-        raw: true
-      })
-      const data = restaurant.map(r => ({
+      const categoryId = Number(req.query.categoryId) || ''
+      const [restaurants, categories] = await Promise.all([
+        Restaurant.findAll({
+          include: Category,
+          where: {
+            ...categoryId ? { categoryId } : {}
+          },
+          nest: true,
+          raw: true
+        }),
+        Category.findAll({ raw: true })
+      ])
+      const data = restaurants.map(r => ({
         ...r,
         description: r.description.substring(0, 40) + '...'
       }))
-      res.render('restaurants', { restaurants: data })
+      res.render('restaurants', { restaurants: data, categories })
     } catch (err) {
       next(err)
     }
