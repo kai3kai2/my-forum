@@ -1,4 +1,4 @@
-const { Restaurant, Category } = require('../models')
+const { Restaurant, Category, Comment, User } = require('../models')
 const { getOffset, getPagination } = require('../helpers/pagination-helper')
 
 const forumController = {
@@ -43,12 +43,13 @@ const forumController = {
     try {
       const restaurantId = req.params.id
       const restaurant = await Restaurant.findByPk(restaurantId, {
-        include: Category,
-        nest: true
+        include: [
+          Category,
+          { model: Comment, include: User }
+        ]
       })
       if (!restaurant) throw new Error('此餐廳不存在!')
       await restaurant.increment('views')
-      console.log(restaurant.views)
       res.render('restaurant', { restaurant: restaurant.toJSON() })
     } catch (err) {
       next(err)
