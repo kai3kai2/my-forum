@@ -2,10 +2,7 @@ const { Restaurant, Category, Comment, User } = require('../models')
 const { getOffset, getPagination } = require('../helpers/pagination-helper')
 
 const forumController = {
-  getForum: (req, res) => {
-    return res.render('forums')
-  },
-  getRestaurants: async (req, res, next) => {
+  getForums: async (req, res, next) => {
     try {
       const DEFAULT_NUMBER = 6
       const categoryId = Number(req.query.categoryId) || ''
@@ -27,9 +24,9 @@ const forumController = {
       ])
       const data = restaurants.rows.map(r => ({
         ...r,
-        description: r.description.substring(0, 40) + '...繼續閱讀'
+        description: r.description.substring(0, 40) + '...'
       }))
-      res.render('restaurants', {
+      res.render('forums', {
         restaurants: data,
         categories,
         categoryId,
