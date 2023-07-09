@@ -14,10 +14,8 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "admin",
-    "password": "loveLy199",
-    "database": "production",
-    "host": "production.cnbcx7kejhix.ap-northeast-1.rds.amazonaws.com",
-    "dialect": "mysql"
+    "use_env-vars": "PROD_DATABASE_URL",
+    "dialect": "mysql",
+    "operatorsAliases": false
   }
 }
