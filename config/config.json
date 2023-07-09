@@ -14,7 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env-vars": "PROD_DATABASE_URL",
+    "use_env-variable": "PROD_DATABASE_URL",
     "dialect": "mysql",
     "operatorsAliases": false
   }
