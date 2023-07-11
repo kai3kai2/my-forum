@@ -9,7 +9,7 @@ const commentController = require('../controllers/comment-controller')
 const manage = require('./modules/manage')
 const auth = require('./modules/auth')
 const { generalErrorHandler } = require('../middleware/error-handlebars')
-const { authenticated, authenticatedUser } = require('../middleware/auth')
+const { authenticated, authenticatedUser, authenticatedAdmin } = require('../middleware/auth')
 
 // router.use(cookieParser()) // 待實作CSRF 功能
 // const csrfProtection = csrf({ cookie: true })
@@ -26,7 +26,7 @@ router.get('/forums/:id', forumController.getRestaurant)
 router.get('/forums', authenticated, authenticatedUser, forumController.getForums)
 
 router.use('/auth', auth)
-router.use('/manage', manage) // authenticated, authenticatedUser,
+router.use('/manage', authenticated, authenticatedAdmin, manage)
 router.use('/', (req, res) => res.redirect('/forums'))
 router.use('/', generalErrorHandler)
 
