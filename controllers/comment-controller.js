@@ -17,14 +17,14 @@ const commentController = {
         restaurantId,
         userId
       })
-      res.redirect(`/restaurants/${restaurantId}`)
+      res.redirect(`/forums/${restaurantId}`)
     } catch (err) {
       next(err)
     }
   },
   deleteComment: async (req, res, next) => {
     try {
-      const userId = getUser(req).id
+      const userId = req.params.id
       const delComment = await Comment.findByPk(userId)
       if (!delComment) throw new Error('此評論不存在!')
       await delComment.destroy()
