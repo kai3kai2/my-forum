@@ -1,17 +1,19 @@
 <div class="row mt-3">
   {{#each restaurants}}
-    <div class="col-md-4">
+    <div class="d-flex card justify-content-center m-auto col-md-7">
+      <div class="card-header">
+        <p class="card-text">
+          <a href="/forums/{{this.id}}">
+            {{this.name}}
+          </a>
+        </p>
+      </div>
       <div class="card mb-4 shadow-sm">
         <a href="/forums/{{this.id}}">
-          <img class="card-img-top img-fluid" src="{{this.image}}" alt="Card image cap" width="286px" height="180px"
+          <img class="card-img-top img-fluid" src="{{this.image}}" alt="Card image cap" width="12rem"
             style="transition: opacity 0.5s; opacity:0;" onload="this.style.opacity=1;">
         </a>
-        <div class="card-body">
-          <p class="card-text">
-            <a href="/forums/{{this.id}}">
-              {{this.name}}
-            </a>
-          </p>
+        <div class="mx-2 card-body">
           <span class="badge bg-secondary">{{this.Category.name}}</span>
           <p class="card-text text-truncate">{{this.description}}</p>
         </div>
@@ -20,7 +22,7 @@
   {{/each}}
 </div> 
 
-<nav class="mt-3" aria-label="page navigation">
+<nav class="mt-3 d-flex justify-content-center" aria-label="page navigation">
   <ul class="pagination">
     <li class="page-item {{#ifCond pagination.currentPage 1}}disabled{{/ifCond}}">
       <a class="page-link" href="/forums?page={{pagination.prev}}&categoryId={{categoryId}}" aria-label="Previous">
