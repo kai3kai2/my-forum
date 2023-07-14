@@ -22,6 +22,8 @@ router.get('/logout', userController.logout)
 // router.get('/forums', authenticated, authenticatedUser, forumController.getForum)
 router.post('/comments', commentController.postComment)
 router.delete('/comments/:id', commentController.deleteComment)
+router.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
+router.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
 router.get('/forums/:id', forumController.getRestaurant)
 router.get('/forums', authenticated, authenticatedUser, forumController.getForums)
 

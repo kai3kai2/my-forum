@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local')
 const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const bcrypt = require('bcryptjs')
-const { User } = require('../models')
+const { User, Restaurant } = require('../models')
 
 passport.use(new LocalStrategy(
   {
@@ -90,11 +90,17 @@ passport.serializeUser((user, cb) => {
   cb(null, user.id)
 })
 passport.deserializeUser((id, cb) => {
-  User.findByPk(id).then(user => {
-    user = user.toJSON()
-    delete user.password
-    return cb(null, user)
+  User.findByPk(id, {
+    include: [
+      { model: Restaurant, as: 'FavoritedRestaurants' }
+    ]
   })
+    .then(user => {
+      user = user.toJSON()
+      delete user.password
+      return cb(null, user)
+    })
+    .catch(err => cb(err))
 })
 
 module.exports = passport
