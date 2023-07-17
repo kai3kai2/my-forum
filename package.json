@@ -8,7 +8,11 @@
     "dev": "nodemon app.js",
     "lint": "eslint \"**/*.js\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dbmigrate": "npx sequelize db:migrate && npx sequelize db:seed:all"
+    "dbmigrate": "npx sequelize db:migrate",
+    "undo-migrate": "npx sequelize db:migrate:undo",
+    "migrate": "npx sequelize db:migrate",
+    "undo-seed": "npx sequelize db:seed:undo",
+    "seed": "npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +21,7 @@
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
-    "csrf": "^3.1.0",
+    "csurf": "^1.11.0",
     "dayjs": "^1.10.6",
     "eslint": "^7.32.0",
     "express": "^4.17.1",
