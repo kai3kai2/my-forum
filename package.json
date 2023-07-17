@@ -11,7 +11,7 @@
     "dbmigrate": "npx sequelize db:migrate",
     "undo-migrate": "npx sequelize db:migrate:undo",
     "migrate": "npx sequelize db:migrate",
-    "undo-seed": "npx sequelize db:seed:undo",
+    "undo-seed": "npx sequelize db:seed:undo:all",
     "seed": "npx sequelize db:seed:all"
   },
   "keywords": [],
