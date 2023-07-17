@@ -1,8 +1,29 @@
-<ul class="nav nav-tabs">
+{{!-- <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link {{#ifCond route 'restaurants'}}active{{/ifCond}}" href="/manage/restaurants">Restaurants</a>
   </li>
   <li class="nav-item">
     <a class="nav-link {{#ifCond route 'categories'}}active{{/ifCond}}" href="/manage/categories">Categories</a>
   </li>
-</ul>
+</ul> --}}
+
+<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+  <ul class="navbar-nav">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Admin 後台
+      </a>
+      <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+        <li class="nav-item">
+          <a class="nav-link" href="/">論壇首頁</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#ifCond route 'restaurants'}}active{{/ifCond}}" href="/manage/restaurants">文章管理</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#ifCond route 'categories'}}active{{/ifCond}}" href="/manage/categories">種類管理</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
