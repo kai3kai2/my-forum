@@ -47,7 +47,7 @@
     </li>
     {{#each pagination.pages}}
       {{#ifCond this ../pagination.currentPage}}
-        <li class="page-item active"><a class="page-link" href="#">{{this}}</a></li>
+        <li class="page-item active"><a class="page-link bg-dark" style="border-color: transparent;" href="#">{{this}}</a></li>
       {{else}}
         <li class="page-item">
           <a class="page-link" href="/forums?page={{this}}&categoryId={{../categoryId}}">{{this}}</a>

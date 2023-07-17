@@ -9,7 +9,8 @@ const getPagination = (limit = 6, page = 1, total = 30) => {
     pages,
     currentPage,
     prev,
-    next
+    next,
+    totalPage
   }
 }
 
