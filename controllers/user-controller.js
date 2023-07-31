@@ -1,7 +1,5 @@
 const bcrypt = require('bcryptjs')
 const { User, Favorite, Restaurant } = require('../models')
-// const helpers = require('../helpers/auth-helpers')
-// const lodash = require('lodash')
 
 const userController = {
   signUpPage: (req, res) => {
