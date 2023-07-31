@@ -1,0 +1,20 @@
+{{> feed-tabs route='feeds'}}
+<div class="row mt-5 d-flex justify-content-center">
+  <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          {{#each comments}}
+            <div>
+              <h4>
+                <a class="link-primary" style="pointer-events: none;" onclick="javascript:void(0);" href="/forums/{{this.Restaurant.id}}">{{this.Restaurant.name}}</a>
+              </h4>
+              <p class="my-4" style="white-space: break-spaces;">{{this.text}}</p>
+              - <a class="link-secondary" href="/users/{{this.User.id}}">{{this.User.name}}</a>
+              <small>at {{relativeTimeFromNow this.createdAt}}</small>
+              <hr>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+  </div>
+</div>

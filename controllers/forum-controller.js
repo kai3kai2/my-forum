@@ -20,6 +20,7 @@ const forumController = {
           },
           limit,
           offset,
+          order: [['createdAt', 'DESC']],
           nest: true,
           raw: true
         }),
@@ -65,6 +66,40 @@ const forumController = {
       if (!restaurant) throw new Error('此餐廳不存在!')
       await restaurant.increment('views')
       res.render('restaurant', { restaurant: restaurant.toJSON() })
+    } catch (err) {
+      next(err)
+    }
+  },
+  getFeedNews: async (req, res, next) => {
+    try {
+      const restaurants = await Restaurant.findAll(
+        {
+          limit: 10,
+          order: [['createdAt', 'DESC']],
+          include: [Category],
+          raw: true,
+          nest: true
+        })
+      res.render('feed-news', {
+        restaurants
+      })
+    } catch (err) {
+      next(err)
+    }
+  },
+  getFeedComments: async (req, res, next) => {
+    try {
+      const comments = await Comment.findAll(
+        {
+          limit: 15,
+          order: [['createdAt', 'DESC']],
+          include: [User, Restaurant],
+          raw: true,
+          nest: true
+        })
+      res.render('feed-comments', {
+        comments
+      })
     } catch (err) {
       next(err)
     }

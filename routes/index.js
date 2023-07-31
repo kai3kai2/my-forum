@@ -23,6 +23,8 @@ router.post('/comments', commentController.postComment)
 router.delete('/comments/:id', commentController.deleteComment)
 router.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
 router.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
+router.get('/forums/feed-news', forumController.getFeedNews)
+router.get('/forums/feed-comments', forumController.getFeedComments)
 router.get('/forums/:id', forumController.getRestaurant)
 router.get('/forums', authenticated, authenticatedUser, forumController.getForums)
 

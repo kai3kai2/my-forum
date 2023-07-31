@@ -1,0 +1,20 @@
+{{> feed-tabs route='feeds'}}
+<div class="row mt-5 d-flex justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        {{#each restaurants}}
+          <div>
+            <h4>
+              <a class="link-primary" href="/forums/{{this.id}}">{{this.name}}</a>
+              <small class="fs-6">[{{this.Category.name}}]</small>
+            </h4>
+            <p class="my-4" style="white-space: break-spaces;">{{this.description}}</p>
+            {{relativeTimeFromNow this.createdAt}}
+            <hr>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div> 

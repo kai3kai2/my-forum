@@ -24,10 +24,11 @@ const commentController = {
   },
   deleteComment: async (req, res, next) => {
     try {
-      const userId = req.params.id
-      const delComment = await Comment.findByPk(userId)
+      const commentUserId = req.params.id
+      const delComment = await Comment.findByPk(commentUserId)
       if (!delComment) throw new Error('此評論不存在!')
       await delComment.destroy()
+      res.redirect('back')
     } catch (err) {
       next(err)
     }

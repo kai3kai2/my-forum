@@ -1,0 +1,12 @@
+<ul class="nav nav-tabs d-flex justify-content-center">
+  <li class="nav-item" style="border: 1px solid #eee;">
+    <a class="nav-link {{#ifCond route 'index'}}active disabled{{/ifCond}}" aria-current="page" href="/">首頁</a>
+  </li>
+  <li class="nav-item dropdown" style="border: 1px solid #eee;">
+    <a class="nav-link dropdown-toggle {{#ifCond route 'feeds'}}active{{/ifCond}}" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">最新動態</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/forums/feed-news">最近新增</a></li>
+      <li><a class="dropdown-item" href="/forums/feed-comments">最新留言</a></li>
+    </ul>
+  </li>
+</ul>
