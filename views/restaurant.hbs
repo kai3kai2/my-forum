@@ -32,7 +32,7 @@
       </form>
     {{/if}}
   <blockquote class="blockquote mb-0">
-    <h4><a href="/users/{{this.User.id}}">{{this.User.name}}</a></h4>
+    <h4><a style="pointer-events: none;" onclick="return false;" href="/users/{{this.User.id}}">{{this.User.name}}</a></h4>
     <p>{{this.text}}</p>
     <footer class="blockquote-footer">{{relativeTimeFromNow this.createdAt}}</footer>
   </blockquote>
