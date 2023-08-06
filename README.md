@@ -2,7 +2,7 @@
 
 ### 展示
 
-新版論壇網站，擁有分類標籤功能、留言功能、喜歡功能並且觀看自己頁面瀏覽數量。
+餐廳論壇網站，可以瀏覽各式餐廳，也可以留言給予餐廳的評價，或是給予鼓勵按個愛心。
 ![MyImage](https://github.com/kai3kai2/my-forum/blob/main/tempImage/%E7%95%AB%E9%9D%A22.png)
 ![MyImage](https://github.com/kai3kai2/my-forum/blob/main/tempImage/%E7%95%AB%E9%9D%A23.png)
 
